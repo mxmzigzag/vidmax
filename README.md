@@ -1,2 +1,2 @@
 # vidmax
-Cinema app. React + GraphQL + Nest + PostgreSQL + TypeORM
+Cinema app. Using: Nest + PostgreSQL + TypeORM + React + GraphQL
