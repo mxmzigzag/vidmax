@@ -1,3 +1,63 @@
+
+#General
+pgdata
+.DS_STORE
+
+# Client
+client/build
+
+# dependencies
 client/node_modules
 
-server/node_modules
+# IDE
+client/.idea
+client/*.iml
+client/.vscode
+client/*.swp
+client/*.swo
+
+# misc
+client/.DS_STORE
+client/.flowconfig
+client/build/
+client/*.log*
+
+#Server
+server/dist
+
+# dependencies
+server/node_modules/
+
+# IDE
+server/.idea
+server/.awcache
+server/.vscode
+server/.devcontainer
+server/*.code-workspace
+
+# misc
+server/.DS_Store
+server/lerna-debug.log
+server/npm-debug.log
+server/yarn-error.log
+server/**/npm-debug.log
+server/packages/**/.npmignore
+server/packages/**/LICENSE
+server/*.tsbuildinfo
+
+# example
+server/quick-start
+server/example_dist
+server/example
+
+# tests
+server/test
+server/benchmarks/memory
+server/coverage
+server/.nyc_output
+server/packages/graphql
+server/benchmarks/memory
+server/build/config\.gypi
+
+server/.npmrc
+server/pnpm-lock.yaml
