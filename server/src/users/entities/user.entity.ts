@@ -27,6 +27,10 @@ export class UserEntity {
   email: string;
 
   @Field()
+  @Column({ nullable: true })
+  password: string;
+
+  @Field()
   @Column()
   firstname: string;
 
