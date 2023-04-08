@@ -6,7 +6,7 @@ import { CreateUserInput } from 'src/users/inputs/create-user.input';
 import { UpdateUserInput } from 'src/users/inputs/update-user.input';
 
 @Injectable()
-export class UserService {
+export class UsersService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
