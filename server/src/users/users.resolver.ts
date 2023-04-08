@@ -16,8 +16,13 @@ export class UsersResolver {
   }
 
   @Query(() => UserEntity)
-  async getOneUser(@Args('id') id: number): Promise<UserEntity> {
-    return await this.userService.getOneUser(id);
+  async getUser(@Args('id') id: number): Promise<UserEntity> {
+    return await this.userService.getUser(id);
+  }
+
+  @Query(() => UserEntity)
+  async getUserByEmail(@Args('email') email: string): Promise<UserEntity> {
+    return await this.userService.getUserByEmail(email);
   }
 
   @Query(() => [UserEntity])
