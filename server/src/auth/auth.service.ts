@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
+import { compare, hash } from 'bcryptjs';
+
 import { TokenResponse } from './object/token.object';
 import { CreateUserInput } from 'src/users/inputs/create-user.input';
 
@@ -15,9 +17,21 @@ export class AuthService {
   ) {}
 
   async signup(signupInput: CreateUserInput): Promise<TokenResponse> {
-    const user = await this.userRepository.create({ ...signupInput });
+    const user = await this.userRepository.findOne({
+      where: { email: signupInput.email },
+    });
 
-    const payload = { username: user.username, sub: user.id };
+    if (user) {
+      throw new Error('User with this email exsist');
+    }
+
+    const hashedPass = await hash(signupInput.password, 10);
+    const newUser = await this.userRepository.save({
+      ...signupInput,
+      password: hashedPass,
+    });
+
+    const payload = { username: newUser.username, sub: newUser.id };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
@@ -30,7 +44,8 @@ export class AuthService {
       throw new Error('No user with such email');
     }
 
-    if (user.password !== password) {
+    const isCorrectPassword = await compare(password, user.password);
+    if (!isCorrectPassword) {
       throw new UnauthorizedException();
     }
 

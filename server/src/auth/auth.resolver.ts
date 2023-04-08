@@ -11,7 +11,7 @@ export class AuthResolver {
 
   @Mutation(() => TokenResponse)
   async signup(
-    @Args('sigup') signupInput: CreateUserInput,
+    @Args('signup') signupInput: CreateUserInput,
   ): Promise<TokenResponse> {
     return this.authService.signup(signupInput);
   }
