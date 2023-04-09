@@ -1,6 +1,8 @@
+import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
 import { UserEntity } from 'src/users/entities/user.entity';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 import { CreateUserInput } from 'src/users/inputs/create-user.input';
 import { UpdateUserInput } from 'src/users/inputs/update-user.input';
@@ -28,6 +30,7 @@ export class UsersResolver {
     return await this.userService.getUserByEmail(email);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Query(() => [UserEntity])
   async getAllUsers(): Promise<UserEntity[]> {
     return await this.userService.getAllUsers();

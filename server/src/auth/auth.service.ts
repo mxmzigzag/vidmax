@@ -5,9 +5,7 @@ import { Repository } from 'typeorm';
 import { compare, hash } from 'bcryptjs';
 
 import { UserEntity } from 'src/users/entities/user.entity';
-
 import { TokenResponse } from './object/token.object';
-
 import { CreateUserInput } from 'src/users/inputs/create-user.input';
 
 @Injectable()
@@ -33,7 +31,7 @@ export class AuthService {
       password: hashedPass,
     });
 
-    const payload = { username: newUser.username, sub: newUser.id };
+    const payload = { email: newUser.email, sub: newUser.id };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
@@ -51,7 +49,7 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
-    const payload = { username: user.username, sub: user.id };
+    const payload = { email: user.email, sub: user.id };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
