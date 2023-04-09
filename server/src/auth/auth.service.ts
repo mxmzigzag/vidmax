@@ -31,7 +31,7 @@ export class AuthService {
       password: hashedPass,
     });
 
-    const payload = { email: newUser.email, sub: newUser.id };
+    const payload = { id: newUser.id, email: newUser.email };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
@@ -46,10 +46,10 @@ export class AuthService {
 
     const isCorrectPassword = await compare(password, user.password);
     if (!isCorrectPassword) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException({ message: 'Password is incorrect' });
     }
 
-    const payload = { email: user.email, sub: user.id };
+    const payload = { id: user.id, email: user.email };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
