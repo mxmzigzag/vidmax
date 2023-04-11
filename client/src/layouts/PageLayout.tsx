@@ -8,7 +8,7 @@ type Props = {
 
 export default function PageLayout({ children }: Props) {
   return (
-    <div className="min-h-screen bg-vBlack">
+    <div className="flex flex-col justify-between min-h-screen bg-vBlack">
       <Header />
       {children}
       <Footer />

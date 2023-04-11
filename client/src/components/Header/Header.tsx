@@ -14,7 +14,7 @@ type Props = {
 
 function Header({ isFixed = true }: Props) {
   return (
-    <div
+    <header
       className={`flex py-4 bg-transparent z-50 ${safePaddingStyles} ${
         isFixed ? "absolute top-0 left-0 right-0" : ""
       }`}
@@ -36,7 +36,7 @@ function Header({ isFixed = true }: Props) {
           Sign In
         </NavLink>
       </div>
-    </div>
+    </header>
   );
 }
 

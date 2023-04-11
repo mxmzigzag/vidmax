@@ -11,7 +11,7 @@ const PHONE_NUMBER = "+380932817549";
 
 export default function Footer() {
   return (
-    <div className="mt-14 py-10 bg-vBlack">
+    <footer className="mt-14 py-10 bg-vBlack">
       <div className={`flex flex-col ${safePaddingStyles}`}>
         <div className="flex items-center justify-between mb-10">
           <div className="flex-1">
@@ -25,10 +25,7 @@ export default function Footer() {
         <div className="flex items-end justify-between">
           <div className="flex-1"></div>
           <div className="flex flex-1 flex-col items-center">
-            <a
-              href={`mailto:info@${EMAIL}`}
-              className="text-base text-white mb-1"
-            >
+            <a href={`mailto:${EMAIL}`} className="text-base text-white mb-1">
               {EMAIL}
             </a>
             <a href={`callto:${PHONE_NUMBER}`} className="text-base text-white">
@@ -37,11 +34,11 @@ export default function Footer() {
           </div>
           <div className="flex flex-1 justify-end">
             <p className="text-sm text-white">
-              © 2023 mxmzigzag private property
+              © 2023 private property of mxmzigzag
             </p>
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
