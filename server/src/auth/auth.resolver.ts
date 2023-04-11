@@ -13,13 +13,15 @@ export class AuthResolver {
 
   @Mutation(() => TokenResponse)
   async signup(
-    @Args('signup') signupInput: CreateUserInput,
+    @Args('SignupInput') signupInput: CreateUserInput,
   ): Promise<TokenResponse> {
     return this.authService.signup(signupInput);
   }
 
   @Mutation(() => TokenResponse)
-  async login(@Args('login') loginInput: LoginInput): Promise<TokenResponse> {
+  async login(
+    @Args('LoginInput') loginInput: LoginInput,
+  ): Promise<TokenResponse> {
     return this.authService.login(loginInput.email, loginInput.password);
   }
 }

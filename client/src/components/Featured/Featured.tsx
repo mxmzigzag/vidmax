@@ -41,19 +41,21 @@ export default function Featured() {
         />
         <div className="flex flex-wrap gap-10 py-8">
           <Button
-            text="All films"
             onClick={() => setFilterType("")}
             buttonStyles="w-40 py-3"
             isActive={!filterType}
-          />
+          >
+            All films
+          </Button>
           {MOTION_TYPES.map((type) => (
             <Button
               key={type.id}
-              text={type.name}
               onClick={() => setFilterType(type.name)}
               buttonStyles="w-40 py-3"
               isActive={type.name === filterType}
-            />
+            >
+              {type.name}
+            </Button>
           ))}
         </div>
         <FilmsGrid films={FILMS} gridStyle={gridStyle} />

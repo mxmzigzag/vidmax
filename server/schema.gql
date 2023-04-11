@@ -22,9 +22,9 @@ input LoginInput {
 
 type Mutation {
   createUser(createUser: CreateUserInput!): UserEntity!
-  login(login: LoginInput!): TokenResponse!
+  login(LoginInput: LoginInput!): TokenResponse!
   removeUser(id: Float!): Float!
-  signup(signup: CreateUserInput!): TokenResponse!
+  signup(SignupInput: CreateUserInput!): TokenResponse!
   updateUser(updateUser: UpdateUserInput!): UserEntity!
 }
 

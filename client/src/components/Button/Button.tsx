@@ -1,12 +1,16 @@
 import React, { memo, useMemo } from "react";
+import Spinner from "../Spinner/Spinner";
 
 type Props = {
+  type?: "button" | "submit" | "reset" | undefined;
   variant?: "primary" | "secondary";
   size?: "sm" | "md";
-  text: string;
   onClick: () => any;
+  isLoading?: boolean;
+  disabled?: boolean;
   buttonStyles?: string;
   isActive?: boolean;
+  children: React.ReactNode;
 };
 
 const buttonSize = {
@@ -15,12 +19,15 @@ const buttonSize = {
 };
 
 function Button({
+  type = "button",
   variant = "primary",
   size = "md",
-  text,
   onClick,
+  isLoading = false,
+  disabled = false,
   buttonStyles = "",
   isActive = true,
+  children,
 }: Props) {
   const buttonVariants = useMemo(() => {
     return {
@@ -34,10 +41,13 @@ function Button({
 
   return (
     <button
+      type={type}
       className={`flex items-center justify-center text-base font-bold text-white py-1.5 px-4 rounded-md border-2 transition-all ${buttonVariants[variant]} ${buttonSize[size]} ${buttonStyles}`}
       onClick={onClick}
+      disabled={disabled || isLoading}
     >
-      {text}
+      {children}
+      {isLoading && <Spinner className="ml-1.5" />}
     </button>
   );
 }
