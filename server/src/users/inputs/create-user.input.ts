@@ -8,10 +8,10 @@ export class CreateUserInput {
   @Field()
   password: string;
 
-  @Field()
+  @Field({ nullable: true })
   firstname: string;
 
-  @Field()
+  @Field({ nullable: true })
   lastname: string;
 
   @Field()

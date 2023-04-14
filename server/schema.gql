@@ -4,8 +4,8 @@
 
 input CreateUserInput {
   email: String!
-  firstname: String!
-  lastname: String!
+  firstname: String
+  lastname: String
   password: String!
   username: String!
 }

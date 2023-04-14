@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ApolloWrapper } from "./apollo/ApolloWrapper";
 import Main from "./pages/Main";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Schedule from "./pages/Schedule";
 import Movies from "./pages/Movies";
 import News from "./pages/News";
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/news" element={<News />} />

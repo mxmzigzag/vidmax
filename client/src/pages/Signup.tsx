@@ -3,21 +3,21 @@ import { NavLink } from "react-router-dom";
 
 import { safePaddingStyles } from "../constants/styles";
 import AuthLayout from "../layouts/AuthLayout";
-import LoginForm from "../components/AuthForms/Login/LoginForm";
+import SignupForm from "../components/AuthForms/Signup/SignupForm";
 
-function Login() {
+function Signup() {
   return (
     <AuthLayout>
       <div
         className={`flex flex-1 items-center justify-end ${safePaddingStyles}`}
       >
         <div className="w-full max-w-md rounded-lg bg-vBlack p-5 z-10 shadow-littleWhite">
-          <LoginForm />
+          <SignupForm />
           <div className="flex flex-col items-center">
             <span className="text-sm font-light text-white mt-4">
-              Don't have an account?{" "}
-              <NavLink to="/signup" className="text-vRed hover:underline">
-                Sign up!
+              Already have an accound?{" "}
+              <NavLink to="/login" className="text-vRed hover:underline">
+                Log in!
               </NavLink>
             </span>
           </div>
@@ -27,4 +27,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

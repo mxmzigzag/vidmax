@@ -1,32 +1,27 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
-import { Repository } from 'typeorm';
 import { compare, hash } from 'bcryptjs';
 
-import { UserEntity } from 'src/users/entities/user.entity';
+import { UsersService } from 'src/users/users.service';
 import { TokenResponse } from './object/token.object';
 import { CreateUserInput } from 'src/users/inputs/create-user.input';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>,
+    private readonly userService: UsersService,
     private readonly jwtService: JwtService,
   ) {}
 
   async signup(signupInput: CreateUserInput): Promise<TokenResponse> {
-    const user = await this.userRepository.findOne({
-      where: { email: signupInput.email },
-    });
+    const user = await this.userService.getUserByEmail(signupInput.email);
 
     if (user) {
       throw new Error('User with this email exsist');
     }
 
     const hashedPass = await hash(signupInput.password, 10);
-    const newUser = await this.userRepository.save({
+    const newUser = await this.userService.createUser({
       ...signupInput,
       password: hashedPass,
     });
@@ -38,7 +33,7 @@ export class AuthService {
   }
 
   async login(email: string, password: string): Promise<TokenResponse> {
-    const user = await this.userRepository.findOne({ where: { email } });
+    const user = await this.userService.getUserByEmail(email);
 
     if (!user) {
       throw new Error('No user with such email');
