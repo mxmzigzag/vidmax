@@ -30,7 +30,7 @@ function Header({ isFixed = true }: Props) {
           <SearchIcon />
         </button>
         <NavLink
-          to="login"
+          to="/login"
           className="flex items-center text-base font-bold text-white py-1.5 px-4 bg-vRed rounded-md h-10 hover:bg-vRedLight transition-all"
         >
           Sign In
