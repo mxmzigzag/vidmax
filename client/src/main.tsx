@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Schedule from "./pages/Schedule";
 import Movies from "./pages/Movies";
 import News from "./pages/News";
+import NotFound from "./pages/404";
 
 import "./index.css";
 
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/news" element={<News />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster />
     </BrowserRouter>

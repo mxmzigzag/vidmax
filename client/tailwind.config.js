@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        rockSalt: "Rock salt",
+      },
       colors: {
         vBlack: "#12161f",
         vBlackLight: "#1f283a",
