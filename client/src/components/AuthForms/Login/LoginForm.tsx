@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useMutation } from "@apollo/client";
@@ -6,13 +6,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./login.schema";
 
-import { loginMutation } from "../../../apollo/mutations/login.mutation";
 import { LoginData, LoginResponse } from "./login.types";
+import { AuthContext } from "../../../context/auth.context";
+import { loginMutation } from "../../../apollo/mutations/login.mutation";
 import InputGroup from "../../Inputs/InputGroup";
 import Button from "../../Button/Button";
 
 function LoginForm() {
   const navigate = useNavigate();
+  const { setAuth } = useContext(AuthContext);
 
   const [logIn, { loading }] = useMutation<LoginResponse>(loginMutation);
 
@@ -37,7 +39,7 @@ function LoginForm() {
         },
       });
       if (data) {
-        localStorage.setItem("token", data.login.access_token);
+        setAuth(data.login);
         navigate("/");
         toast("Logged in!");
       }

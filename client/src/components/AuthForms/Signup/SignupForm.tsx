@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useMutation } from "@apollo/client";
@@ -6,13 +6,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./signup.schema";
 
-import { signupMutation } from "../../../apollo/mutations/signup.mutation";
 import { SignupData, SignupResponse } from "./signup.types";
+import { AuthContext } from "../../../context/auth.context";
+import { signupMutation } from "../../../apollo/mutations/signup.mutation";
 import InputGroup from "../../Inputs/InputGroup";
 import Button from "../../Button/Button";
 
 function SignupForm() {
   const navigate = useNavigate();
+  const { setAuth } = useContext(AuthContext);
 
   const [signUp, { loading }] = useMutation<SignupResponse>(signupMutation);
 
@@ -40,7 +42,7 @@ function SignupForm() {
         },
       });
       if (data) {
-        localStorage.setItem("token", data.signup.access_token);
+        setAuth(data.signup);
         navigate("/");
         toast("Welcome to Vidmax!");
       }

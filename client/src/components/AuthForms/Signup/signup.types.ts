@@ -1,3 +1,5 @@
+import { AuthResponse } from "../Login/login.types";
+
 export type SignupData = {
   email: string;
   username: string;
@@ -6,7 +8,5 @@ export type SignupData = {
 };
 
 export type SignupResponse = {
-  signup: {
-    access_token: string;
-  };
+  signup: AuthResponse;
 };

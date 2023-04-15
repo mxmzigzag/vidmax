@@ -5,6 +5,13 @@ export const signupMutation = gql`
     signup(
       SignupInput: { email: $email, username: $username, password: $password }
     ) {
+      user {
+        id
+        email
+        username
+        firstname
+        lastname
+      }
       access_token
     }
   }
