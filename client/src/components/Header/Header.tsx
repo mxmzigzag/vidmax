@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 import { safePaddingStyles } from "../../constants/styles";
+import { AuthContext } from "../../context/auth.context";
 
 import NavBar from "../NavBar/NavBar";
+import { UserPill } from "../UserPill/UserPill";
 
 import LogoIcon from "../../assets/icons/logo";
 import SearchIcon from "../../assets/icons/search";
@@ -13,6 +15,7 @@ type Props = {
 };
 
 function Header({ isFixed = true }: Props) {
+  const { isAuth } = useContext(AuthContext);
   return (
     <header
       className={`flex py-4 bg-transparent z-50 ${safePaddingStyles} ${
@@ -29,12 +32,16 @@ function Header({ isFixed = true }: Props) {
         <button className="text-white text-xl ml-5 mr-10 hover:scale-125 duration-300 transition-all">
           <SearchIcon />
         </button>
-        <NavLink
-          to="/login"
-          className="flex items-center text-base font-bold text-white py-1.5 px-4 bg-vRed rounded-md h-10 hover:bg-vRedLight transition-all"
-        >
-          Sign In
-        </NavLink>
+        {isAuth ? (
+          <UserPill />
+        ) : (
+          <NavLink
+            to="/login"
+            className="flex items-center text-base font-bold text-white py-1.5 px-4 bg-vRed rounded-md h-10 hover:bg-vRedLight transition-all"
+          >
+            Sign In
+          </NavLink>
+        )}
       </div>
     </header>
   );

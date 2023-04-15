@@ -19,6 +19,7 @@ const defaultUser = {
   username: "",
   firstname: "",
   lastname: "",
+  avatar: "",
 };
 
 export const AuthContext = createContext<IAuthContext>({
