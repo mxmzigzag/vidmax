@@ -1,35 +1,65 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import AuthProvider from "./context/auth.context";
 import { ApolloWrapper } from "./apollo/ApolloWrapper";
+import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import Main from "./pages/Main";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Schedule from "./pages/Schedule";
 import Movies from "./pages/Movies";
 import News from "./pages/News";
+import Cabinet from "./components/Cabinet/Cabinet";
 import NotFound from "./pages/404";
 
 import "./index.css";
 
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route
+          path="/login"
+          element={
+            <ProtectedRoute isAuthenticated={false}>
+              <Login />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <ProtectedRoute isAuthenticated={false}>
+              <Signup />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/news" element={<News />} />
+        <Route
+          path="/cabinet/:userId"
+          element={
+            <ProtectedRoute isAuthenticated={true}>
+              <Cabinet />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <Toaster />
+    </BrowserRouter>
+  );
+};
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <AuthProvider>
     <ApolloWrapper>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/schedule" element={<Schedule />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/news" element={<News />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Toaster />
-      </BrowserRouter>
+      <App />
     </ApolloWrapper>
   </AuthProvider>
 );
