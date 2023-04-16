@@ -14,6 +14,7 @@ import Movies from "./pages/Movies";
 import News from "./pages/News";
 import Cabinet from "./components/Cabinet/Cabinet";
 import NotFound from "./pages/404";
+import Parse from "./pages/Parse";
 
 import "./index.css";
 
@@ -49,6 +50,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/parse" element={<Parse />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster />
