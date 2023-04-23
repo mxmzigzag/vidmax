@@ -2,6 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AuthResponse {
+  access_token: String!
+  user: UserEntity!
+}
+
+type CountryEntity {
+  abbreviation: String!
+  id: ID!
+  name: String!
+  region: String!
+  users: [UserEntity!]!
+}
+
 input CreateUserInput {
   email: String!
   firstname: String
@@ -22,20 +35,22 @@ input LoginInput {
 
 type Mutation {
   createUser(createUser: CreateUserInput!): UserEntity!
-  login(LoginInput: LoginInput!): TokenResponse!
-  removeUser(id: Float!): Float!
-  signup(SignupInput: CreateUserInput!): TokenResponse!
+  login(LoginInput: LoginInput!): AuthResponse!
+  removeUser(RemoveUserInput: Float!): RemoveUserResponse!
+  seedCountries: [CountryEntity!]!
+  signup(SignupInput: CreateUserInput!): AuthResponse!
   updateUser(updateUser: UpdateUserInput!): UserEntity!
 }
 
 type Query {
   getAllUsers: [UserEntity!]!
+  getCountries: [CountryEntity!]!
   getUser(id: Float!): UserEntity!
   getUserByEmail(email: String!): UserEntity!
 }
 
-type TokenResponse {
-  access_token: String!
+type RemoveUserResponse {
+  message: String!
 }
 
 input UpdateUserInput {
@@ -48,6 +63,8 @@ input UpdateUserInput {
 }
 
 type UserEntity {
+  birthDate: DateTime!
+  countryId: CountryEntity!
   createdAt: DateTime!
   email: String!
   firstname: String!

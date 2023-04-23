@@ -4,6 +4,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserEntity } from 'src/users/entities/user.entity';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+import { RemoveUserResponse } from './objects/remove-response.object';
 import { CreateUserInput } from 'src/users/inputs/create-user.input';
 import { UpdateUserInput } from 'src/users/inputs/update-user.input';
 
@@ -43,8 +44,10 @@ export class UsersResolver {
     return await this.userService.updateUser(updateUserInput);
   }
 
-  @Mutation(() => Number)
-  async removeUser(@Args('id') id: number): Promise<number> {
+  @Mutation(() => RemoveUserResponse)
+  async removeUser(
+    @Args('RemoveUserInput') id: number,
+  ): Promise<RemoveUserResponse> {
     return await this.userService.removeUser(id);
   }
 }

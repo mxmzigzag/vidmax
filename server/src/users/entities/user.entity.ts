@@ -3,31 +3,27 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { CountryEntity } from 'src/country/entities/country.entity';
 
 @ObjectType()
 @Entity('users')
 export class UserEntity {
   @Field(() => ID)
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Field()
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @Field()
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @Field()
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Field()
-  @Column({ nullable: true })
+  @Column()
   password: string;
 
   @Field()
@@ -41,4 +37,23 @@ export class UserEntity {
   @Field()
   @Column()
   username: string;
+
+  @Field()
+  @ManyToOne(() => CountryEntity, (country: CountryEntity) => country.users, {
+    eager: true,
+  })
+  @JoinColumn()
+  countryId: CountryEntity;
+
+  @Field()
+  @Column({ nullable: true })
+  birthDate: Date;
+
+  @Field()
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @Field()
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

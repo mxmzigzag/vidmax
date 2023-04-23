@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 
 import { UserEntity } from 'src/users/entities/user.entity';
 
+import { RemoveUserResponse } from './objects/remove-response.object';
 import { CreateUserInput } from 'src/users/inputs/create-user.input';
 import { UpdateUserInput } from 'src/users/inputs/update-user.input';
 
@@ -38,8 +39,8 @@ export class UsersService {
     return await this.getUser(updateUserInput.id);
   }
 
-  async removeUser(id: number): Promise<number> {
+  async removeUser(id: number): Promise<RemoveUserResponse> {
     await this.userRepository.delete({ id });
-    return id;
+    return { message: `User ${id} - DELETED` };
   }
 }
