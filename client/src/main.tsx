@@ -59,9 +59,9 @@ const App = () => {
 };
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <AuthProvider>
-    <ApolloWrapper>
+  <ApolloWrapper>
+    <AuthProvider>
       <App />
-    </ApolloWrapper>
-  </AuthProvider>
+    </AuthProvider>
+  </ApolloWrapper>
 );

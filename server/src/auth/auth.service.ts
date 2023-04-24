@@ -1,9 +1,11 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { AuthenticationError } from '@nestjs/apollo';
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from 'bcryptjs';
 
 import { UsersService } from 'src/users/users.service';
 import { AuthResponse } from './object/auth-response.object';
+import { TokenResponse } from './object/token-response.object copy';
 import { CreateUserInput } from 'src/users/inputs/create-user.input';
 
 @Injectable()
@@ -50,5 +52,14 @@ export class AuthService {
       user,
       access_token: await this.jwtService.signAsync(payload),
     };
+  }
+
+  async checkToken(token: string): Promise<TokenResponse> {
+    try {
+      await this.jwtService.verify(token);
+      return { access_token: token };
+    } catch (error) {
+      throw new AuthenticationError('JWT expired');
+    }
   }
 }

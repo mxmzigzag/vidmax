@@ -43,6 +43,7 @@ type Mutation {
 }
 
 type Query {
+  checkToken(TokenInput: String!): TokenResponse!
   getAllUsers: [UserEntity!]!
   getCountries: [CountryEntity!]!
   getUser(id: Float!): UserEntity!
@@ -51,6 +52,10 @@ type Query {
 
 type RemoveUserResponse {
   message: String!
+}
+
+type TokenResponse {
+  access_token: String!
 }
 
 input UpdateUserInput {

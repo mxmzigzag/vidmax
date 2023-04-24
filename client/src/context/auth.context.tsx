@@ -1,6 +1,9 @@
-import { createContext, memo, useState } from "react";
+import { createContext, memo, useEffect, useState } from "react";
+import { useLazyQuery } from "@apollo/client";
+
 import { IUser } from "../types/user.types";
 import { AuthResponse } from "../components/AuthForms/Login/login.types";
+import { checkTokenQuery } from "../apollo/query/checkToken.query";
 
 interface IAuthContext {
   isAuth: boolean;
@@ -33,6 +36,8 @@ const AuthProvider = ({ children }: Props) => {
   const storageToken = localStorage.getItem("token");
   const storageUser = localStorage.getItem("user");
 
+  const [checkToken] = useLazyQuery(checkTokenQuery);
+
   const [token, setToken] = useState<string>(storageToken || "");
   const [user, setUser] = useState<IUser>(
     storageUser ? JSON.parse(storageUser) : defaultUser
@@ -45,7 +50,19 @@ const AuthProvider = ({ children }: Props) => {
     setUser(auth.user);
   };
 
-  console.log("AUTH CONT:", token, user);
+  const checkTokenValidity = async (token: string) => {
+    const res = await checkToken({ variables: { token } });
+    if (!res.data) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setToken("");
+      setUser(defaultUser);
+    }
+  };
+
+  useEffect(() => {
+    checkTokenValidity(token);
+  }, []);
 
   const value = {
     isAuth: Boolean(token),
