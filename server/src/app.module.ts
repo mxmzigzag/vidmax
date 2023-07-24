@@ -7,6 +7,17 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { CountryModule } from './country/country.module';
+import { FilmModule } from './film/film.module';
+import { ActorModule } from './actor/actor.module';
+import { CompanyModule } from './company/company.module';
+import { DirectorModule } from './director/director.module';
+import { FilmRatingModule } from './filmRating/filmRating.module';
+import { FilmStatusModule } from './filmStatus/filmStatus.module';
+import { GenreModule } from './genre/genre.module';
+import { HallModule } from './hall/hall.module';
+import { MotionModule } from './motion/motion.module';
+import { TagModule } from './tag/tag.module';
+import { TicketModule } from './ticket/ticket.module';
 
 @Module({
   imports: [
@@ -26,7 +37,7 @@ import { CountryModule } from './country/country.module';
         password: config.get<string>('TYPEORM_PASSWORD'),
         database: config.get<string>('TYPEORM_DATABASE'),
         port: config.get<number>('TYPEORM_PORT'),
-        entities: [__dirname + 'dist/**/*.entity{.ts, .js}'],
+        entities: [__dirname + '/**/*.entity{.ts, .js}'],
         synchronize: true,
         autoLoadEntities: true,
         logging: true,
@@ -35,6 +46,17 @@ import { CountryModule } from './country/country.module';
     UsersModule,
     AuthModule,
     CountryModule,
+    FilmModule,
+    ActorModule,
+    CompanyModule,
+    DirectorModule,
+    FilmRatingModule,
+    FilmStatusModule,
+    GenreModule,
+    HallModule,
+    MotionModule,
+    TagModule,
+    TicketModule,
   ],
   controllers: [],
   providers: [],

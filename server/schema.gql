@@ -2,13 +2,33 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type ActorEntity {
+  biography: String!
+  birthDate: DateTime!
+  careerStartedAt: DateTime!
+  countryId: CountryEntity!
+  films: [FilmEntity!]!
+  id: ID!
+  name: String!
+  quote: String!
+}
+
 type AuthResponse {
   access_token: String!
   user: UserEntity!
 }
 
+type CompanyEntity {
+  films: [FilmEntity!]!
+  id: ID!
+  name: String!
+}
+
 type CountryEntity {
   abbreviation: String!
+  actors: [ActorEntity!]!
+  directors: [DirectorEntity!]!
+  films: [FilmEntity!]!
   id: ID!
   name: String!
   region: String!
@@ -28,15 +48,65 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type DirectorEntity {
+  biography: String!
+  birthDate: DateTime!
+  careerStartedAt: DateTime!
+  countryId: CountryEntity!
+  films: [FilmEntity!]!
+  id: ID!
+  name: String!
+  quote: String!
+}
+
+type FilmEntity {
+  actorId: ActorEntity!
+  companyId: CompanyEntity!
+  countryId: CountryEntity!
+  cover: String!
+  createdAt: DateTime!
+  description: String!
+  directorId: DirectorEntity!
+  duration: Float!
+  id: ID!
+  motionId: MotionEntity!
+  releasedAt: DateTime!
+  statusId: FilmStatusEntity!
+  thumbnail: String!
+  title: String!
+  trailerUri: String!
+  updatedAt: DateTime!
+}
+
+type FilmStatusEntity {
+  films: [FilmEntity!]!
+  id: ID!
+  name: String!
+}
+
+type HallEntity {
+  id: ID!
+  number: DateTime!
+  rows: Float!
+  seats: Float!
+  tickets: [TicketEntity!]!
+}
+
 input LoginInput {
   email: String!
   password: String!
 }
 
+type MotionEntity {
+  films: [FilmEntity!]!
+  id: ID!
+  name: String!
+}
+
 type Mutation {
   createUser(createUser: CreateUserInput!): UserEntity!
   login(LoginInput: LoginInput!): AuthResponse!
-  removeUser(RemoveUserInput: Float!): RemoveUserResponse!
+  removeUser(RemoveUserInput: String!): RemoveUserResponse!
   seedCountries: [CountryEntity!]!
   signup(SignupInput: CreateUserInput!): AuthResponse!
   updateUser(updateUser: UpdateUserInput!): UserEntity!
@@ -46,12 +116,21 @@ type Query {
   checkToken(TokenInput: String!): TokenResponse!
   getAllUsers: [UserEntity!]!
   getCountries: [CountryEntity!]!
-  getUser(id: Float!): UserEntity!
+  getUser(id: String!): UserEntity!
   getUserByEmail(email: String!): UserEntity!
 }
 
 type RemoveUserResponse {
   message: String!
+}
+
+type TicketEntity {
+  date: ID!
+  hallId: HallEntity!
+  id: ID!
+  row: Float!
+  seat: Float!
+  userId: UserEntity!
 }
 
 type TokenResponse {
@@ -76,6 +155,7 @@ type UserEntity {
   id: ID!
   lastname: String!
   password: String!
+  tickets: TicketEntity!
   updatedAt: DateTime!
   username: String!
 }
