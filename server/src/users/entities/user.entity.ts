@@ -10,6 +10,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Roles } from '../types/user.types';
 import { CountryEntity } from 'src/country/entities/country.entity';
 import { TicketEntity } from 'src/ticket/entities/ticket.entity';
 
@@ -39,6 +40,10 @@ export class UserEntity {
   @Field()
   @Column()
   username: string;
+
+  @Field()
+  @Column({ type: 'enum', enum: Roles, default: Roles.Viewer })
+  role: Roles;
 
   @Field()
   @ManyToOne(() => CountryEntity, (country: CountryEntity) => country.users, {

@@ -8,6 +8,7 @@ export const signupMutation = gql`
       user {
         id
         email
+        role
         username
       }
       access_token

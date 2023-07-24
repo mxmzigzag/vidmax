@@ -1,7 +1,7 @@
 import { createContext, memo, useEffect, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 
-import { IUser } from "../types/user.types";
+import { IUser, Roles } from "../types/user.types";
 import { AuthResponse } from "../components/AuthForms/Login/login.types";
 import { checkTokenQuery } from "../apollo/query/checkToken.query";
 
@@ -19,6 +19,7 @@ type Props = {
 const defaultUser = {
   id: "0",
   email: "",
+  role: Roles.Viewer,
   username: "",
   firstname: "",
   lastname: "",

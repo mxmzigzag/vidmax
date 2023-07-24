@@ -1,4 +1,5 @@
 import { Field, ID, InputType } from '@nestjs/graphql';
+import { Roles } from '../types/user.types';
 
 @InputType()
 export class UpdateUserInput {
@@ -19,4 +20,7 @@ export class UpdateUserInput {
 
   @Field({ nullable: true })
   username: string;
+
+  @Field({ nullable: true })
+  role: Roles;
 }

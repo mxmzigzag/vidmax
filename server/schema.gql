@@ -141,6 +141,7 @@ input UpdateUserInput {
   id: ID!
   lastname: String
   password: String
+  role: String
   username: String
 }
 
@@ -153,6 +154,7 @@ type UserEntity {
   id: ID!
   lastname: String!
   password: String!
+  role: String!
   tickets: TicketEntity!
   updatedAt: DateTime!
   username: String!
