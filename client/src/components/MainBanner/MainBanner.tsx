@@ -24,7 +24,12 @@ function MainBanner() {
       >
         WATCH YOUR REALITY
       </button>
-      <img src={Banner} alt="Banner" className="absolute inset-0 z-10" />
+      <img
+        src={Banner}
+        alt="Banner"
+        className="absolute inset-0 z-10"
+        loading="lazy"
+      />
       <div className="absolute inset-0 z-20 bg-gradient-to-b from-transparent to-vBlack" />
     </div>
   );
