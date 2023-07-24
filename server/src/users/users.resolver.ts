@@ -22,7 +22,7 @@ export class UsersResolver {
   }
 
   @Query(() => UserEntity)
-  async getUser(@Args('id') id: number): Promise<UserEntity> {
+  async getUser(@Args('id') id: string): Promise<UserEntity> {
     return await this.userService.getUser(id);
   }
 
@@ -46,7 +46,7 @@ export class UsersResolver {
 
   @Mutation(() => RemoveUserResponse)
   async removeUser(
-    @Args('RemoveUserInput') id: number,
+    @Args('RemoveUserInput') id: string,
   ): Promise<RemoveUserResponse> {
     return await this.userService.removeUser(id);
   }

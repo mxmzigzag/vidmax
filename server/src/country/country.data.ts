@@ -1,7 +1,10 @@
 import { WorldRegions } from './types/country.enum';
 import { CountryEntity } from './entities/country.entity';
 
-export const countries: Omit<CountryEntity, 'id' | 'users'>[] = [
+export const countries: Omit<
+  CountryEntity,
+  'id' | 'users' | 'films' | 'directors' | 'actors'
+>[] = [
   { name: 'Afghanistan', abbreviation: 'AF', region: WorldRegions.ASIA },
   { name: 'Åland Islands', abbreviation: 'AX', region: WorldRegions.EUROPE },
   { name: 'Albania', abbreviation: 'AL', region: WorldRegions.EUROPE },

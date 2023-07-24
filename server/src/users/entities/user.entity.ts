@@ -5,18 +5,20 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import { CountryEntity } from 'src/country/entities/country.entity';
+import { TicketEntity } from 'src/ticket/entities/ticket.entity';
 
 @ObjectType()
 @Entity('users')
 export class UserEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Field()
   @Column({ unique: true })
@@ -48,6 +50,11 @@ export class UserEntity {
   @Field()
   @Column({ nullable: true })
   birthDate: Date;
+
+  @Field()
+  @OneToMany(() => TicketEntity, (ticket: TicketEntity) => ticket.userId)
+  @JoinColumn()
+  tickets: TicketEntity;
 
   @Field()
   @CreateDateColumn()

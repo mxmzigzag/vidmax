@@ -19,7 +19,7 @@ export class UsersService {
     return await this.userRepository.save({ ...userInput });
   }
 
-  async getUser(id: number): Promise<UserEntity> {
+  async getUser(id: string): Promise<UserEntity> {
     return await this.userRepository.findOne({ where: { id } });
   }
 
@@ -39,7 +39,7 @@ export class UsersService {
     return await this.getUser(updateUserInput.id);
   }
 
-  async removeUser(id: number): Promise<RemoveUserResponse> {
+  async removeUser(id: string): Promise<RemoveUserResponse> {
     await this.userRepository.delete({ id });
     return { message: `User ${id} - DELETED` };
   }
