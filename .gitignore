@@ -2,6 +2,8 @@
 #General
 pgdata
 .DS_STORE
+**/*.env
+**/*.env.*
 
 # Client
 client/build
@@ -61,3 +63,5 @@ server/build/config\.gypi
 
 server/.npmrc
 server/pnpm-lock.yaml
+
+
