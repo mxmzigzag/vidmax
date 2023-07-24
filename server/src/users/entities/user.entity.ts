@@ -45,16 +45,16 @@ export class UserEntity {
     eager: true,
   })
   @JoinColumn()
-  countryId: CountryEntity;
+  countryId?: CountryEntity;
 
   @Field()
   @Column({ nullable: true })
-  birthDate: Date;
+  birthDate?: Date;
 
   @Field()
   @OneToMany(() => TicketEntity, (ticket: TicketEntity) => ticket.userId)
   @JoinColumn()
-  tickets: TicketEntity;
+  tickets?: TicketEntity;
 
   @Field()
   @CreateDateColumn()

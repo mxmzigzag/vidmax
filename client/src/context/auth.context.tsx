@@ -17,7 +17,7 @@ type Props = {
 };
 
 const defaultUser = {
-  id: 0,
+  id: "0",
   email: "",
   username: "",
   firstname: "",

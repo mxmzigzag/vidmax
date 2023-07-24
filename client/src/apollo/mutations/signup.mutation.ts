@@ -9,8 +9,6 @@ export const signupMutation = gql`
         id
         email
         username
-        firstname
-        lastname
       }
       access_token
     }

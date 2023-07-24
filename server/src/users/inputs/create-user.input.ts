@@ -8,12 +8,6 @@ export class CreateUserInput {
   @Field()
   password: string;
 
-  @Field({ nullable: true })
-  firstname: string;
-
-  @Field({ nullable: true })
-  lastname: string;
-
   @Field()
   username: string;
 }
