@@ -39,7 +39,7 @@ export class UsersResolver {
 
   @Mutation(() => UserEntity)
   async updateUser(
-    @Args('updateUser') updateUserInput: UpdateUserInput,
+    @Args('updateUserInput') updateUserInput: UpdateUserInput,
   ): Promise<UserEntity> {
     return await this.userService.updateUser(updateUserInput);
   }

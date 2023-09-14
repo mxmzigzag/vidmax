@@ -107,7 +107,7 @@ type Mutation {
   removeUser(RemoveUserInput: String!): RemoveUserResponse!
   seedCountries: [CountryEntity!]!
   signup(SignupInput: CreateUserInput!): AuthResponse!
-  updateUser(updateUser: UpdateUserInput!): UserEntity!
+  updateUser(updateUserInput: UpdateUserInput!): UserEntity!
 }
 
 type Query {
@@ -136,13 +136,13 @@ type TokenResponse {
 }
 
 input UpdateUserInput {
-  email: String
-  firstname: String
+  email: String!
+  firstname: String!
   id: ID!
-  lastname: String
-  password: String
-  role: String
-  username: String
+  lastname: String!
+  password: String!
+  role: String!
+  username: String!
 }
 
 type UserEntity {

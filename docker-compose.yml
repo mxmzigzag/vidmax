@@ -12,25 +12,25 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
     ports:
-      - ${TYPEORM_PORT}:${TYPEORM_PORT}
+      - 5433:${TYPEORM_PORT}
 
-  server:
-    container_name: vidmax_server
-    build:
-      context: ./server
-    depends_on:
-      - db
-    restart: unless-stopped
-    ports:
-      - ${PORT}:4000
-    environment:
-      - PORT=${PORT}
-      - BASE_URL=${BASE_URL}
-      - JWT_SECRET=${JWT_SECRET}
-      - JWT_REFRESH=${JWT_REFRESH}
-      - TYPEORM_CONNECTION=${TYPEORM_CONNECTION}
-      - TYPEORM_USERNAME=${TYPEORM_USERNAME}
-      - TYPEORM_PASSWORD=${TYPEORM_PASSWORD}
-      - TYPEORM_DATABASE=${TYPEORM_DATABASE}
-      - TYPEORM_PORT=${TYPEORM_PORT}
-      - TYPEORM_HOST=db
+  # server:
+  #   container_name: vidmax_server
+  #   build:
+  #     context: ./server
+  #   depends_on:
+  #     - db
+  #   restart: unless-stopped
+  #   ports:
+  #     - ${PORT}:4000
+  #   environment:
+  #     - PORT=${PORT}
+  #     - BASE_URL=${BASE_URL}
+  #     - JWT_SECRET=${JWT_SECRET}
+  #     - JWT_REFRESH=${JWT_REFRESH}
+  #     - TYPEORM_CONNECTION=${TYPEORM_CONNECTION}
+  #     - TYPEORM_USERNAME=${TYPEORM_USERNAME}
+  #     - TYPEORM_PASSWORD=${TYPEORM_PASSWORD}
+  #     - TYPEORM_DATABASE=${TYPEORM_DATABASE}
+  #     - TYPEORM_PORT=${TYPEORM_PORT}
+  #     - TYPEORM_HOST=db

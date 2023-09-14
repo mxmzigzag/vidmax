@@ -12,7 +12,7 @@ import Signup from "./pages/Signup";
 import Schedule from "./pages/Schedule";
 import Movies from "./pages/Movies";
 import News from "./pages/News";
-import Cabinet from "./components/Cabinet/Cabinet";
+import Cabinet from "./pages/Cabinet";
 import NotFound from "./pages/404";
 import Parse from "./pages/Parse";
 

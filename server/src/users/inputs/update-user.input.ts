@@ -6,21 +6,21 @@ export class UpdateUserInput {
   @Field(() => ID)
   id: string;
 
-  @Field({ nullable: true })
-  email: string;
+  @Field()
+  email?: string;
 
-  @Field({ nullable: true })
-  password: string;
+  @Field()
+  password?: string;
 
-  @Field({ nullable: true })
-  firstname: string;
+  @Field()
+  firstname?: string;
 
-  @Field({ nullable: true })
-  lastname: string;
+  @Field()
+  lastname?: string;
 
-  @Field({ nullable: true })
-  username: string;
+  @Field()
+  username?: string;
 
-  @Field({ nullable: true })
-  role: Roles;
+  @Field()
+  role?: Roles;
 }
